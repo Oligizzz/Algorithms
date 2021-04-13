@@ -1,5 +1,7 @@
 package com.oligizzz.algorithms;
 
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -13,46 +15,22 @@ public class Test {
 
 
     public static void main(String[] args) {
-        //int [] test = new int[2147483648];
-        System.out.println(Integer.MAX_VALUE);
-//        for(int i = 0 ; i < 2147483648 ; i ++){
-//            test[i] = i;
-//        }
-//        Test test1 = new Test();
-//        System.out.println(test1.binarySearch1(test, 12));
-
-    }
-
-
-    private int binarySearch1(int[] nums ,int target){
-        int len = nums.length;
-        int lo = 0 ;
-        int hi = len -1;
-        while(lo <= hi){
-            int mid = lo + (hi - lo >>1);
-            if(nums[mid] == target){ return mid;}
-            if(nums[mid]>target){
-                hi = mid - 1;
-            }else{
-                lo = mid +1;
-            }
+        int [] a = new int[]{1,6,8,2,4,63,14};
+        String [] temp = new String[a.length];
+        for(int i = 0 ; i < a.length ; i ++){
+            temp[i] = ""+a[i];
         }
-        return -1;
-    }
 
-
-    private int binarySearch2(int [] nums , int target){
-        int len = nums.length;
-        int lo = 0;
-        int hi = len -1;
-        while (lo < hi) {
-            int mid = lo + hi >> 1;
-            if (nums[mid] >= target) {
-                hi = mid;
-            } else {
-                lo = mid + 1;
+        Arrays.sort(temp, new Comparator<String>() {
+            @Override
+            public int compare(String o1, String o2) {
+                return o1.compareTo(o2);
             }
+        });
+        StringBuffer res = new StringBuffer();
+        for (String s : temp) {
+            res.append(s+" ");
         }
-        return nums[hi] == target ? hi : -1;
+        System.out.println(res.toString());
     }
 }
