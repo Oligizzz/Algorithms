@@ -13,24 +13,33 @@ import java.util.Map;
  */
 public class Test {
 
+    public static void main(String []args){
+        int a=2;
+        int b=2;
+        int aResult;
+        int bResult;
+        long startTime;
+        long endTime;
+        long time;
 
-    public static void main(String[] args) {
-        int [] a = new int[]{1,6,8,2,4,63,14};
-        String [] temp = new String[a.length];
-        for(int i = 0 ; i < a.length ; i ++){
-            temp[i] = ""+a[i];
+        //乘法运算
+        startTime=System.currentTimeMillis();
+        for(int i=0;i<250000000;i++){
+            bResult=b*1024;
         }
+        endTime=System.currentTimeMillis();
+        time=endTime-startTime;
+        System.out.println("乘法250000000次时间："+time);
 
-        Arrays.sort(temp, new Comparator<String>() {
-            @Override
-            public int compare(String o1, String o2) {
-                return o1.compareTo(o2);
-            }
-        });
-        StringBuffer res = new StringBuffer();
-        for (String s : temp) {
-            res.append(s+" ");
+        //位运算
+        System.out.println(Integer.toBinaryString(1024));
+        startTime=System.currentTimeMillis();
+        for(int i=0;i<250000000;i++){
+            aResult=a<<10;
         }
-        System.out.println(res.toString());
+        endTime=System.currentTimeMillis();
+        time=endTime-startTime;
+        System.out.println("位移100000000次时间："+time);
     }
+
 }
