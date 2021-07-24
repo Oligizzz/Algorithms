@@ -25,7 +25,6 @@ public class Leetcode138 {
     }
 
 
-
     public Node copyRandomList2(Node head) {
         if (head == null) {
             return null;
@@ -34,7 +33,7 @@ public class Leetcode138 {
         Node dummy = new Node(-1);
         dummy.next = head;
         // 构造新旧链表的映射关系
-        while(head != null){
+        while (head != null) {
             // 新节点
             Node newNode = new Node(head.val);
             newNode.next = head.next;
@@ -44,11 +43,11 @@ public class Leetcode138 {
 
         // 从头开始处理random域
         head = dummy.next;
-        while(head != null){
-            if(head.random != null){
+        while (head != null) {
+            if (head.random != null) {
                 // 新结点的random域指向元凯节点的random域的新结点
                 head.next.random = head.random.next;
-            }else{
+            } else {
                 head.next.random = null;
             }
             head = head.next.next;
@@ -57,13 +56,13 @@ public class Leetcode138 {
         // 把旧的链表拆掉
         head = dummy.next;
         Node res = head.next;
-        while(head != null){
+        while (head != null) {
             // 取到新链表的节点
             Node curNew = head.next;
             // 断开新旧链表
             head.next = curNew.next;
             // 处理新链表节点的next域
-            if(curNew.next != null){
+            if (curNew.next != null) {
                 curNew.next = curNew.next.next;
             }
             head = head.next;
