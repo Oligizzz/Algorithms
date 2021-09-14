@@ -36,9 +36,8 @@ public class BaseSort implements Sortab, Serializable {
 
         @Override
         public void swap(int[] array, int index1, int index2) {
-                int temp = array[index1];
-                array[index1] = array[index2];
-                array[index2] = temp;
-
+                array[index1] = array[index1]^array[index2];
+                array[index2] = array[index1]^array[index2];
+                array[index1] = array[index1]^array[index2];
         }
 }

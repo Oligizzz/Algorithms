@@ -33,7 +33,7 @@ public class LevelOrderOfBinaryTree {
                     queue.offer(cur.right);
                 }
             }
-            res.add(temp);
+            res.add(new ArrayList<>(temp));
         }
         return res;
     }
