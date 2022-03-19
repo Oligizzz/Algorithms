@@ -14,7 +14,6 @@ import java.util.List;
  */
 public class LeetCode113 {
 
-
     List<List<Integer>> res = new ArrayList<>();
     Deque<Integer> stack = new LinkedList<>();
     public List<List<Integer>> pathSum(TreeNode root, int targetSum) {
