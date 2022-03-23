@@ -15,12 +15,14 @@ public class LeetCode783 {
         return res;
     }
 
-    private void dfs(TreeNode root){
-        if(root == null){
+    private void dfs(TreeNode root) {
+        if (root == null) {
             return;
         }
         dfs(root.left);
-        if(pre != null){ res = Math.min(res,root.val-pre.val);}
+        if (pre != null) {
+            res = Math.min(res, root.val - pre.val);
+        }
         pre = root;
         dfs(root.right);
     }

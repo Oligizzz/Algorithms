@@ -296,7 +296,6 @@ public class TreeNode {
         node.left = recur(root + 1, left, i - 1, preorder, map);
         // 开启右子树递归
         node.right = recur(root + i - left + 1, i + 1, right, preorder, map);
-        // 回溯返回根节点
         return node;
     }
 
