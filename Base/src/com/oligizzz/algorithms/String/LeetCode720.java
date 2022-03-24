@@ -19,7 +19,7 @@ public class LeetCode720 {
         Set<String> set = new HashSet<>(Arrays.asList(words));
         for (int i = words.length - 1; i >= 1; i--) {
             String cur = words[i];
-            if(!check(cur,set)){
+            if (!check(cur, set)) {
                 continue;
             }
             return cur;
@@ -27,8 +27,8 @@ public class LeetCode720 {
         return "";
     }
 
-    private boolean check(String str ,Set<String> set){
-        for (int j = str.length() -1 ; j >= 1; j--) {
+    private boolean check(String str, Set<String> set) {
+        for (int j = str.length() - 1; j >= 1; j--) {
             String sub = str.substring(0, j);
             if (!set.contains(sub)) {
                 return false;
