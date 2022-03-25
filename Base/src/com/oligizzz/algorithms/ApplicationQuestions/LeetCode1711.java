@@ -23,6 +23,7 @@ public class LeetCode1711 {
     }
 
     static int mod = (int) 1e9 + 7;
+
     public static int countPairs(int[] ds) {
         int n = ds.length;
         long ans = 0;
@@ -37,7 +38,7 @@ public class LeetCode1711 {
             }
             map.put(x, map.getOrDefault(x, 0) + 1);
         }
-        return (int)ans % mod;
+        return (int) ans % mod;
 
     }
 }
