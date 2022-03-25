@@ -25,12 +25,12 @@ public class TreeNode {
 
     /**
      * DEFAULT_TREE:
-     *
-     *      3
-     *     / \
-     *    9   20
-     *       /  \
-     *      15    7
+     * <p>
+     * 3
+     * / \
+     * 9   20
+     * /  \
+     * 15    7
      */
     public static final TreeNode DEFAULT_TREE;
     /**
@@ -41,6 +41,8 @@ public class TreeNode {
      * 默认树的中序序列
      */
     private static final int[] INORDER = {9, 3, 15, 20, 7};
+
+    private static final String NULL_NODE_STRING = "null";
 
     static {
         DEFAULT_TREE = buildDefaultTree(PREORDER, INORDER);
@@ -237,26 +239,29 @@ public class TreeNode {
 
     /**
      * 二叉树的层序遍历
+     *
      * @param root
      * @return
      */
-    public List<List<Integer>> layerOrderTraversal(TreeNode root){
+    public List<List<Integer>> layerOrderTraversal(TreeNode root) {
         List<List<Integer>> res = new ArrayList<>();
-        if(root == null){return res;}
+        if (root == null) {
+            return res;
+        }
         TreeNode node = root;
         Queue<TreeNode> queue = new ArrayDeque<>();
         queue.offer(node);
         List<Integer> temp = new ArrayList<>();
-        while(!queue.isEmpty()){
+        while (!queue.isEmpty()) {
             int curLevelCount = queue.size();
-            for(int i = 0 ; i < curLevelCount ; i++){
+            for (int i = 0; i < curLevelCount; i++) {
                 TreeNode sameLevelNode = queue.poll();
                 temp.add(sameLevelNode.val);
-                if(sameLevelNode.left != null){
+                if (sameLevelNode.left != null) {
                     queue.offer(sameLevelNode.left);
                 }
 
-                if(sameLevelNode.right != null){
+                if (sameLevelNode.right != null) {
                     queue.offer(sameLevelNode.right);
                 }
             }
@@ -297,6 +302,53 @@ public class TreeNode {
         // 开启右子树递归
         node.right = recur(root + i - left + 1, i + 1, right, preorder, map);
         return node;
+    }
+
+
+    /**
+     * 更具层序遍历构建一棵二叉树
+     *
+     * @param input 层序遍历序列（空节点用 "null" 表示）
+     * @return
+     */
+    public static TreeNode stringToTreeNode(String input) {
+        input = input.trim();
+        input = input.substring(1, input.length() - 1);
+        if (input.length() == 0) {
+            return null;
+        }
+        String[] parts = input.split(",");
+        String item = parts[0];
+        TreeNode root = new TreeNode(Integer.parseInt(item));
+        Queue<TreeNode> nodeQueue = new LinkedList<>();
+        nodeQueue.add(root);
+
+        int index = 1;
+        while (!nodeQueue.isEmpty()) {
+            TreeNode node = nodeQueue.remove();
+            if (index == parts.length) {
+                break;
+            }
+            item = parts[index++];
+            item = item.trim();
+            if (!item.equals(NULL_NODE_STRING)) {
+                int leftNumber = Integer.parseInt(item);
+                node.left = new TreeNode(leftNumber);
+                nodeQueue.add(node.left);
+            }
+            if (index == parts.length) {
+                break;
+            }
+
+            item = parts[index++];
+            item = item.trim();
+            if (!item.equals(NULL_NODE_STRING)) {
+                int rightNumber = Integer.parseInt(item);
+                node.right = new TreeNode(rightNumber);
+                nodeQueue.add(node.right);
+            }
+        }
+        return root;
     }
 
 
