@@ -16,6 +16,11 @@ package com.oligizzz.algorithms.BinarySearch;
  * @Modify By:
  */
 public class LeetCode374 {
+    public static void main(String[] args) {
+        LeetCode374 test = new LeetCode374();
+        System.out.println(test.guessNumber(10));
+
+    }
     public int guessNumber(int n) {
         int lo = 1;
         int hi = n;
@@ -34,6 +39,12 @@ public class LeetCode374 {
     }
 
     private int guess(int num) {
-        return 0;
+        if(num == 6){
+            return 0;
+        }else if(num < 6){
+            return -1;
+        }else {
+            return 1;
+        }
     }
 }
